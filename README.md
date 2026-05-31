@@ -4,6 +4,12 @@ A complete internship-level full-stack Task Manager application built with React
 
 Users can register, log in, and manage their own tasks across three stages: `Todo`, `In Progress`, and `Done`.
 
+## Live Links
+
+- Frontend: [https://task-manager-pied-three-21.vercel.app](https://task-manager-pied-three-21.vercel.app)
+- Backend API: [https://task-manager-1-ah3a.onrender.com](https://task-manager-1-ah3a.onrender.com)
+- API Docs: [https://task-manager-1-ah3a.onrender.com/docs](https://task-manager-1-ah3a.onrender.com/docs)
+
 ## Features
 
 - User registration and login
@@ -72,8 +78,12 @@ task-manager-app/
     .env.example
     eslint.config.js
     index.html
+    package-lock.json
     package.json
+    vercel.json
     vite.config.js
+  .gitignore
+  INTERVIEW_PREP_GUIDE.md
   README.md
 ```
 
@@ -246,6 +256,10 @@ Allowed task stages:
 `frontend/vite.config.js`
 
 - Configures Vite with the React plugin.
+
+`frontend/vercel.json`
+
+- Configures Vercel rewrites so refreshing `/login`, `/register`, or `/dashboard` serves the React app instead of returning a 404.
 
 `frontend/.env.example`
 
@@ -422,6 +436,7 @@ uvicorn main:app --host 0.0.0.0 --port $PORT
 7. Add environment variables:
 
 ```text
+DATABASE_URL=your-postgresql-connection-url
 SECRET_KEY=your-production-secret
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 FRONTEND_ORIGIN=https://your-vercel-app.vercel.app
@@ -441,6 +456,8 @@ VITE_API_URL=https://your-render-service.onrender.com
 5. Deploy.
 
 After deployment, update the backend `FRONTEND_ORIGIN` in Render to match the final Vercel URL.
+
+Note: free backend services can sleep when inactive. If the first login/register request is slow, wait briefly and try again.
 
 ## Assumptions
 
